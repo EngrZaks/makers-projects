@@ -47,7 +47,8 @@ button {
    background: rgba(20, 20, 20, 0.226);
    margin: 5px auto;
 }
-.status {
+.status,
+.trials {
    text-transform: uppercase;
    font-weight: bolder;
 }
