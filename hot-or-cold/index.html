@@ -37,6 +37,7 @@
             const result = document.querySelector(".result");
             const status = document.querySelector(".status");
             const trials = document.querySelector(".trials");
+            const restart = document.querySelector(".restart");
             let statusText;
             let statusColor;
             let numberOfTrial = 0;
@@ -49,20 +50,16 @@
                if (guess == randValue) {
                   statusText = `game won in ${numberOfTrial + 1} trials`;
                   statusColor = "purple";
-                  console.log(statusText);
                } else {
                   if (lastGuessDifference < differece) {
                      statusText = "colder";
                      statusColor = "blue";
-                     console.log(statusText);
                   } else if (lastGuessDifference > differece) {
                      statusText = "hotter";
                      statusColor = "red";
-                     console.log(statusText);
                   } else if (lastGuessDifference == differece) {
                      statusText = "neither colder nor hoter";
                      statusColor = "black";
-                     console.log(statusText);
                   }
                }
                status.textContent = statusText;
@@ -75,6 +72,10 @@
                lastGuessDifference = differece;
                numberOfTrial++;
                trials.textContent = numberOfTrial;
+            });
+            restart.addEventListener("click", () => {
+               form.reset();
+               playGame();
             });
          }
       </script>
