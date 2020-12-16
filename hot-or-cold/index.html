@@ -9,7 +9,15 @@
    <body>
       <div class="game-wrapper">
          <div class="game">
-            <h1>Hot or Cold Game</h1>
+            <h1>
+               The
+               <span class="hot" style="border-bottom: 5px solid red">Hot</span>
+               or
+               <span class="cold" style="border-bottom: 5px solid cyan"
+                  >Cold</span
+               >
+               Game
+            </h1>
             <p>Guess a number between 0 and 100 to play</p>
             <div class="result">
                <p>Status: <span class="status"></span></p>
@@ -24,15 +32,17 @@
                   value=""
                   placeholder="Input your guess"
                />
-               <button>Play</button> <span class="restart">restart</span>
+               <div class="error"></div>
+               <button>Play</button> <span class="restart">New Game</span>
             </form>
          </div>
       </div>
       <script>
          window.onload = playGame;
+         let randValue;
          function playGame() {
             console.log("game loaded");
-            const randValue = Math.floor(Math.random() * 100);
+            randValue = Math.floor(Math.random() * 100);
             const form = document.querySelector("form");
             const result = document.querySelector(".result");
             const status = document.querySelector(".status");
@@ -40,43 +50,87 @@
             const restart = document.querySelector(".restart");
             let statusText;
             let statusColor;
+            let error = document.querySelector(".error");
             let numberOfTrial = 0;
             trials.textContent = numberOfTrial;
             let lastGuessDifference = 0;
+            form.guess.addEventListener("click", (e) => {
+               error.textContent = "";
+            });
+            form.guess.addEventListener("keypress", (e) => {
+               error.textContent = "";
+            });
             form.addEventListener("submit", (e) => {
                e.preventDefault();
-               const guess = form.guess.value;
-               const differece = Math.abs(guess - randValue);
-               if (guess == randValue) {
-                  statusText = `game won in ${numberOfTrial + 1} trials`;
-                  statusColor = "purple";
-               } else {
-                  if (lastGuessDifference < differece) {
-                     statusText = "colder";
-                     statusColor = "blue";
-                  } else if (lastGuessDifference > differece) {
-                     statusText = "hotter";
-                     statusColor = "red";
-                  } else if (lastGuessDifference == differece) {
-                     statusText = "neither colder nor hoter";
-                     statusColor = "black";
-                  }
+               if (status.textContent.includes("game won")) {
+                  return;
                }
-               status.textContent = statusText;
-               status.style.color = statusColor;
-               result.classList.add("flash");
-               setInterval(() => {
-                  result.classList.remove("flash");
-               }, 500);
-               console.log(guess, randValue, differece);
-               lastGuessDifference = differece;
-               numberOfTrial++;
-               trials.textContent = numberOfTrial;
+               if (formValidated()) {
+                  const guess = form.guess.value;
+                  const differece = Math.abs(guess - randValue);
+
+                  if (guess == randValue) {
+                     statusText = `game won in ${numberOfTrial + 1} trials`;
+                     statusColor = "purple";
+                  } else {
+                     if (lastGuessDifference < differece) {
+                        statusText = "colder";
+                        statusColor = "cyan";
+                     } else if (lastGuessDifference > differece) {
+                        statusText = "hotter";
+                        statusColor = "red";
+                     } else if (lastGuessDifference == differece) {
+                        statusText = "neither colder nor hoter";
+                        statusColor = "black";
+                     }
+                  }
+                  status.textContent = statusText;
+                  status.style.color = statusColor;
+                  result.classList.add("flash");
+                  setInterval(() => {
+                     result.classList.remove("flash");
+                  }, 300);
+                  console.log(guess, randValue, differece);
+                  lastGuessDifference = differece;
+                  numberOfTrial++;
+                  trials.textContent = numberOfTrial;
+               } else {
+                  formValidated();
+                  return;
+               }
             });
+            //function to restart the game
             restart.addEventListener("click", () => {
+               randValue = Math.floor(Math.random() * 100);
                form.reset();
-               playGame();
+               status.textContent = "";
+               error.textContent = "";
+               numberOfTrial = 0;
+               trials.textContent = numberOfTrial;
+               lastGuessDifference = 0;
             });
+
+            //function to validate the form
+            function formValidated() {
+               const value = form.guess.value;
+               let errorText;
+               const errDisp = () => (error.textContent = errorText);
+               if (value.length < 1) {
+                  errorText = "the input is empty 👆";
+                  errDisp();
+                  return false;
+               } else if (value < 0 || value > 100 || value.length > 3) {
+                  errorText = "a number between 0 and 100 is required 👆";
+                  errDisp();
+                  return false;
+               } else if (isNaN(value)) {
+                  errorText = "a number is required 👆";
+                  errDisp();
+                  return false;
+               } else {
+                  return true;
+               }
+            }
          }
       </script>
    </body>

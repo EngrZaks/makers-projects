@@ -57,5 +57,11 @@ button {
 .flash {
    padding: 5px;
    background: rgba(20, 20, 20, 0.226);
-   border: 1px dashed rgba(0, 0, 0, 0.774);
+   border: 5px dashed red;
+}
+.error {
+   margin-top: -10px;
+   text-align: center;
+   font-size: small;
+   color: red;
 }
