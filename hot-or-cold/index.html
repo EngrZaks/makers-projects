@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>HotOrCols</title>
+      <link rel="stylesheet" href="style.css" />
+   </head>
+   <body>
+      <div class="game-wrapper">
+         <div class="game">
+            <h1>Hot or Cold Game</h1>
+            <p>Guess a number between 0 and 100 to play</p>
+            <div class="result">
+               <p>Status: <span class="status"></span></p>
+            </div>
+            <form>
+               <label for="guess"></label>
+               <input
+                  type="text"
+                  name="guess"
+                  id="guess"
+                  value=""
+                  placeholder="Input your guess"
+               />
+               <button>Play</button>
+            </form>
+         </div>
+      </div>
+      <script>
+         window.onload = playGame;
+         function playGame() {
+            console.log("game loaded");
+            const randValue = Math.floor(Math.random() * 100);
+            const form = document.querySelector("form");
+            const result = document.querySelector(".result");
+            const status = document.querySelector(".status");
+            let statusText;
+            let statusColor;
+            let trial = 0;
+            let lastGuessDifference = 0;
+            form.addEventListener("submit", (e) => {
+               e.preventDefault();
+               const guess = form.guess.value;
+               const differece = Math.abs(guess - randValue);
+               if (guess == randValue) {
+                  statusText = "game won";
+                  statusColor = "purple";
+                  console.log(statusText);
+               } else {
+                  if (lastGuessDifference < differece) {
+                     statusText = "colder";
+                     statusColor = "blue";
+                     console.log(statusText);
+                  } else if (lastGuessDifference > differece) {
+                     statusText = "hotter";
+                     statusColor = "red";
+                     console.log(statusText);
+                  } else if (lastGuessDifference == differece) {
+                     statusText = "neither colder nor hoter";
+                     statusColor = "black";
+                     console.log(statusText);
+                  }
+               }
+               status.textContent = statusText;
+               status.style.color = statusColor;
+               result.classList.add("flash");
+               setInterval(() => {
+                  result.classList.remove("flash");
+               }, 300);
+               console.log(guess, randValue, differece);
+               lastGuessDifference = differece;
+            });
+         }
+      </script>
+   </body>
+</html>
