@@ -56,7 +56,7 @@ button {
 
 .flash {
    padding: 5px;
-   background: rgba(20, 20, 20, 0.226);
+   background: rgba(20, 20, 20, 0.137);
    border: 5px dashed red;
 }
 .error {
@@ -64,4 +64,7 @@ button {
    text-align: center;
    font-size: small;
    color: red;
+}
+p {
+   margin: 5px;
 }
