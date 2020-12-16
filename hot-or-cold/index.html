@@ -23,7 +23,7 @@
                   value=""
                   placeholder="Input your guess"
                />
-               <button>Play</button>
+               <button>Play</button> <span class="restart">restart</span>
             </form>
          </div>
       </div>
@@ -67,7 +67,7 @@
                result.classList.add("flash");
                setInterval(() => {
                   result.classList.remove("flash");
-               }, 300);
+               }, 500);
                console.log(guess, randValue, differece);
                lastGuessDifference = differece;
             });

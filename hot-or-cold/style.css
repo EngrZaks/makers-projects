@@ -41,6 +41,12 @@ button {
    width: 100px;
    margin: auto;
 }
+.restart {
+   text-align: center;
+   cursor: default;
+   background: rgba(20, 20, 20, 0.226);
+   margin: 5px auto;
+}
 .status {
    text-transform: uppercase;
    font-weight: bolder;
@@ -48,6 +54,6 @@ button {
 
 .flash {
    padding: 5px;
-   background: rgba(20, 20, 20, 0.404);
-   border: 1px solid black;
+   background: rgba(20, 20, 20, 0.226);
+   border: 1px dashed rgba(0, 0, 0, 0.774);
 }
