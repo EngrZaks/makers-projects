@@ -47,7 +47,7 @@
                const guess = form.guess.value;
                const differece = Math.abs(guess - randValue);
                if (guess == randValue) {
-                  statusText = "game won";
+                  statusText = `game won in ${numberOfTrial + 1} trials`;
                   statusColor = "purple";
                   console.log(statusText);
                } else {
