@@ -9,7 +9,7 @@
    <body>
       <main class="game-wrapper">
          <div class="game-board">
-            <h1>Tic-Tac-Toe</h1>
+            <h1>Tic-Tac-Toe Game</h1>
             <p>player <span class="player">X</span> your turn</p>
             <table>
                <tr>
@@ -29,12 +29,14 @@
                </tr>
             </table>
             <p class="winner">player <span class="player">x</span> wins</p>
+            <button>New Game</button>
          </div>
       </main>
       <script>
          window.onload = () => {
             const boxes = document.querySelectorAll("td");
             const Player = document.querySelector(".player");
+            const winner = document.querySelector(".winner");
             let currentPlayer = "X";
             let gameOn = true;
             let numberOfPlay = 0;
@@ -101,16 +103,24 @@
             function showWinner(x, y, z) {
                const items = [x, y, z];
                items.forEach((item) => {
-                  item.style.background = "#fff";
-                  item.style.transform = "scale(1.1)";
-                  item.style.borderRadius = "50%";
+                  item.classList.add("show-winner");
                });
                document.querySelector(".winner .player").innerHTML =
                   currentPlayer == "X" ? "O" : "X";
-               document.querySelector(".winner").style.opacity = 1;
+               winner.style.opacity = 1;
                gameOn = false;
                window.navigator.vibrate(200);
             }
+            document.querySelector("button").addEventListener("click", (e) => {
+               gameOn = true;
+               boxes.forEach((box) => {
+                  box.style.opacity = 0;
+                  box.innerHTML = 0;
+                  box.classList.remove("show-winner");
+               });
+               winner.style.opacity = 0;
+               Player.innerHTML = "X";
+            });
          };
       </script>
    </body>
