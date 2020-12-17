@@ -42,12 +42,13 @@ p {
 }
 tr,
 td {
-   font-size: large;
+   font-size: larger;
    font-weight: bold;
    text-align: center;
    text-transform: capitalize;
    border: 1px solid black;
-   padding: 12px;
+   padding: 17px;
+   margin: 3px;
    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.69, 0.06);
 }
 td {
