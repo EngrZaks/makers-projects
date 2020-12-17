@@ -35,17 +35,17 @@ button {
    font-weight: bolder;
 }
 .signup {
-   background: #1da0f267;
+   background: #1da0f2ab;
    color: white;
 }
 .signup:hover {
-   background: #1da0f29d;
+   background: #1da0f2ee;
 }
 .login {
    border: 1px solid #1da1f2;
 }
 .login:hover {
-   background: #1da0f21f;
+   background: #1da0f252;
 }
 a {
    text-decoration: none;
@@ -86,7 +86,7 @@ a:hover {
    color: white;
    font-size: 17px;
    font-weight: bold;
-   background: url("/twitter-clone/images/Twitter_Logo_Blue1.png") #1da0f263;
+   background: url("/twitter-clone/images/Twitter_Logo_Blue1.png") #1da0f2a4;
    background-repeat: no-repeat;
    background-size: 350px;
    background-position: right;
