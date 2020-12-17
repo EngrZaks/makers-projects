@@ -28,7 +28,61 @@
                   <td>x</td>
                </tr>
             </table>
+            <p class="winner">player <span class="player">x</span> wins</p>
          </div>
       </main>
+      <script>
+         window.onload = () => {
+            const boxes = document.querySelectorAll("td");
+            const Player = document.querySelector(".player");
+            let currentPlayer = "X";
+            let gameOn = true;
+            boxes.forEach((box) => {
+               box.addEventListener("click", (e) => {
+                  if (box.style.opacity == 0 && gameOn) {
+                     box.innerHTML = currentPlayer;
+                     currentPlayer = currentPlayer == "X" ? "O" : "X";
+                     Player.innerHTML = currentPlayer;
+                     box.style.opacity = 1;
+                     if (
+                        boxes[0].innerHTML == boxes[1].innerHTML &&
+                        boxes[1].innerHTML == boxes[2].innerHTML
+                     ) {
+                        showWinner(boxes[0], boxes[1], boxes[2]);
+                     } else if (
+                        boxes[3].innerHTML == boxes[4].innerHTML &&
+                        boxes[4].innerHTML == boxes[5].innerHTML
+                     ) {
+                        showWinner(boxes[3], boxes[4], boxes[5]);
+                     } else if (
+                        boxes[6].innerHTML == boxes[7].innerHTML &&
+                        boxes[7].innerHTML == boxes[8].innerHTML
+                     ) {
+                        showWinner(boxes[6], boxes[7], boxes[8]);
+                     } else if (
+                        boxes[0].innerHTML == boxes[3].innerHTML &&
+                        boxes[3].innerHTML == boxes[6].innerHTML
+                     ) {
+                        showWinner(boxes[0], boxes[3], boxes[6]);
+                     } else if (
+                        boxes[1].innerHTML == boxes[4].innerHTML &&
+                        boxes[4].innerHTML == boxes[7].innerHTML
+                     ) {
+                        showWinner(boxes[1], boxes[4], boxes[7]);
+                     }
+                  }
+               });
+            });
+            function showWinner(x, y, z) {
+               x.style.background = "white";
+               y.style.background = "white";
+               z.style.background = "white";
+               document.querySelector(".winner .player").innerHTML =
+                  currentPlayer == "X" ? "O" : "X";
+               document.querySelector(".winner").style.opacity = 1;
+               gameOn = false;
+            }
+         };
+      </script>
    </body>
 </html>
