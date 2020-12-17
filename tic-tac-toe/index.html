@@ -13,19 +13,19 @@
             <p>player <span class="player">X</span> your turn</p>
             <table>
                <tr>
-                  <td>o</td>
-                  <td>x</td>
-                  <td>x</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
                </tr>
                <tr>
-                  <td>x</td>
-                  <td>x</td>
-                  <td>o</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
                </tr>
                <tr>
-                  <td>x</td>
-                  <td>o</td>
-                  <td>x</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
                </tr>
             </table>
             <p class="winner">player <span class="player">x</span> wins</p>
@@ -37,6 +37,7 @@
             const Player = document.querySelector(".player");
             let currentPlayer = "X";
             let gameOn = true;
+            let numberOfPlay = 0;
             boxes.forEach((box) => {
                box.addEventListener("click", (e) => {
                   if (box.style.opacity == 0 && gameOn) {
@@ -44,43 +45,71 @@
                      currentPlayer = currentPlayer == "X" ? "O" : "X";
                      Player.innerHTML = currentPlayer;
                      box.style.opacity = 1;
+                     numberOfPlay++;
                      if (
                         boxes[0].innerHTML == boxes[1].innerHTML &&
-                        boxes[1].innerHTML == boxes[2].innerHTML
+                        boxes[1].innerHTML == boxes[2].innerHTML &&
+                        boxes[0].innerHTML != 0
                      ) {
                         showWinner(boxes[0], boxes[1], boxes[2]);
                      } else if (
                         boxes[3].innerHTML == boxes[4].innerHTML &&
-                        boxes[4].innerHTML == boxes[5].innerHTML
+                        boxes[4].innerHTML == boxes[5].innerHTML &&
+                        boxes[3].innerHTML != 0
                      ) {
                         showWinner(boxes[3], boxes[4], boxes[5]);
                      } else if (
                         boxes[6].innerHTML == boxes[7].innerHTML &&
-                        boxes[7].innerHTML == boxes[8].innerHTML
+                        boxes[7].innerHTML == boxes[8].innerHTML &&
+                        boxes[6].innerHTML != 0
                      ) {
                         showWinner(boxes[6], boxes[7], boxes[8]);
                      } else if (
                         boxes[0].innerHTML == boxes[3].innerHTML &&
-                        boxes[3].innerHTML == boxes[6].innerHTML
+                        boxes[3].innerHTML == boxes[6].innerHTML &&
+                        boxes[0].innerHTML != 0
                      ) {
                         showWinner(boxes[0], boxes[3], boxes[6]);
                      } else if (
                         boxes[1].innerHTML == boxes[4].innerHTML &&
-                        boxes[4].innerHTML == boxes[7].innerHTML
+                        boxes[4].innerHTML == boxes[7].innerHTML &&
+                        boxes[1].innerHTML != 0
                      ) {
                         showWinner(boxes[1], boxes[4], boxes[7]);
+                     } else if (
+                        boxes[2].innerHTML == boxes[5].innerHTML &&
+                        boxes[5].innerHTML == boxes[8].innerHTML &&
+                        boxes[2].innerHTML != 0
+                     ) {
+                        showWinner(boxes[2], boxes[5], boxes[8]);
+                     } else if (
+                        boxes[0].innerHTML == boxes[4].innerHTML &&
+                        boxes[4].innerHTML == boxes[8].innerHTML &&
+                        boxes[0].innerHTML != 0
+                     ) {
+                        showWinner(boxes[0], boxes[4], boxes[8]);
+                     } else if (
+                        boxes[2].innerHTML == boxes[4].innerHTML &&
+                        boxes[4].innerHTML == boxes[6].innerHTML &&
+                        boxes[2].innerHTML != 0
+                     ) {
+                        showWinner(boxes[2], boxes[4], boxes[6]);
                      }
                   }
                });
             });
             function showWinner(x, y, z) {
-               x.style.background = "white";
-               y.style.background = "white";
-               z.style.background = "white";
+               const items = [x, y, z];
+               items.forEach((item) => {
+                  item.style.background = "#fff";
+                  item.style.transform = "scale(1.1)";
+                  item.style.borderRadius = "50%";
+               });
                document.querySelector(".winner .player").innerHTML =
                   currentPlayer == "X" ? "O" : "X";
                document.querySelector(".winner").style.opacity = 1;
                gameOn = false;
+               window.navigator.vibrate(200);
             }
          };
       </script>

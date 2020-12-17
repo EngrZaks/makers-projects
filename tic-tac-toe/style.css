@@ -31,7 +31,7 @@ h1 {
    line-height: 35px;
 }
 p {
-   background: #fff;
+   background: rgba(255, 255, 255, 0.74);
    padding: 8px;
    margin: 10px;
    border-radius: 5px;
