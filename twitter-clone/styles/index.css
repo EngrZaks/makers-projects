@@ -86,7 +86,7 @@ a:hover {
    color: white;
    font-size: 17px;
    font-weight: bold;
-   background: url("/twitter-clone/images/Twitter_Logo_Blue1.png") #6ab7e7c5;
+   background: url("/twitter-clone/images/Twitter_Logo_Blue1.png") #54b2ec8e;
    background-repeat: no-repeat;
    background-size: 350px;
    background-position: right;
@@ -133,7 +133,6 @@ footer {
       background-size: 800px;
       margin: 0;
       padding: 130px 50px;
-      /* background-color: #1da0f2cc; */
    }
    .action-wrapper {
       width: 50%;
