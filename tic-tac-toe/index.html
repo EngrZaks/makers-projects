@@ -34,26 +34,30 @@
       </main>
       <script>
          window.onload = () => {
+            //get dom elements as variables to work with
             const boxes = document.querySelectorAll("td");
             const Player = document.querySelector(".player");
             const winner = document.querySelector(".winner");
+            //set flag variables
             let currentPlayer = "X";
             let gameOn = true;
             let numberOfPlay = 0;
             boxes.forEach((box) => {
                box.addEventListener("click", (e) => {
                   if (box.style.opacity == 0 && gameOn) {
-                     box.innerHTML = currentPlayer;
-                     currentPlayer = currentPlayer == "X" ? "O" : "X";
+                     //play the move if current box is not played and the game is not over yet
+                     box.innerHTML = currentPlayer; //set current player
+                     currentPlayer = currentPlayer == "X" ? "O" : "X"; //change current player
                      Player.innerHTML = currentPlayer;
                      box.style.opacity = 1;
                      numberOfPlay++;
+                     //check for all the conditions to possibly win the game
                      if (
                         boxes[0].innerHTML == boxes[1].innerHTML &&
                         boxes[1].innerHTML == boxes[2].innerHTML &&
                         boxes[0].innerHTML != 0
                      ) {
-                        showWinner(boxes[0], boxes[1], boxes[2]);
+                        showWinner(boxes[0], boxes[1], boxes[2]); // execute showWinner() for a winning case
                      } else if (
                         boxes[3].innerHTML == boxes[4].innerHTML &&
                         boxes[4].innerHTML == boxes[5].innerHTML &&
@@ -100,19 +104,21 @@
                   }
                });
             });
+            //function to indicate that a players wins
             function showWinner(x, y, z) {
-               const items = [x, y, z];
+               const items = [x, y, z]; //form an array with the parameters and loop through them
                items.forEach((item) => {
                   item.classList.add("show-winner");
                });
                document.querySelector(".winner .player").innerHTML =
-                  currentPlayer == "X" ? "O" : "X";
-               winner.style.opacity = 1;
-               gameOn = false;
-               window.navigator.vibrate(140);
+                  currentPlayer == "X" ? "O" : "X"; //set the player in the winner text
+               winner.style.opacity = 1; //display the winneer text
+               gameOn = false; //stop game
+               window.navigator.vibrate(140); //vibrate for dvices with viberators
             }
+            //function to start a new game
             document.querySelector("button").addEventListener("click", (e) => {
-               gameOn = true;
+               gameOn = true; //start the game
                boxes.forEach((box) => {
                   box.style.opacity = 0;
                   box.innerHTML = 0;
