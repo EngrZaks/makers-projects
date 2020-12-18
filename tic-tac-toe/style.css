@@ -8,8 +8,7 @@ main {
    height: 100vh;
    display: flex;
 }
-.game-wrapper {
-}
+
 .game-board {
    background-color: yellow;
    display: flex;

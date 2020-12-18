@@ -35,21 +35,21 @@ button {
    font-weight: bolder;
 }
 .signup {
-   background: #1da0f2b7;
+   background: #1da0f2;
    color: white;
 }
 .signup:hover {
-   background: #1da0f2f3;
+   background: #056fb1;
 }
 .login {
    border: 1px solid #1da1f2;
 }
 .login:hover {
-   background: #1da0f252;
+   background: #1da0f2b4;
 }
 a {
    text-decoration: none;
-   color: rgba(0, 0, 0, 0.541);
+   color: rgba(0, 0, 0, 0.664);
    padding: 5px;
 }
 a:hover {
@@ -86,7 +86,7 @@ a:hover {
    color: white;
    font-size: 17px;
    font-weight: bold;
-   background: url("/twitter-clone/images/Twitter_Logo_Blue1.png") #1da0f2cc;
+   background: url("/twitter-clone/images/Twitter_Logo_Blue1.png") #1da0f2e0;
    background-repeat: no-repeat;
    background-size: 350px;
    background-position: right;
@@ -132,14 +132,11 @@ footer {
       width: 50%;
       background-size: 800px;
       margin: 0;
-      background-color: ;
+      padding: 130px 50px;
+      /* background-color: #1da0f2cc; */
    }
    .action-wrapper {
       width: 50%;
       margin: 0;
-   }
-   .intros {
-      padding: 120px;
-      background-color: #1da0f2cc;
    }
 }
