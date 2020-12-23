@@ -9,32 +9,39 @@
    <body>
       <main class="game-wrapper">
          <div class="game">
-            <h1>
-               The
-               <span class="hot" style="border-bottom: 5px solid red">Hot</span>
-               or
-               <span class="cold" style="border-bottom: 5px solid cyan"
-                  >Cold</span
-               >
-               Game
-            </h1>
-            <p>Guess a number between 0 and 100 to play</p>
-            <div class="result">
-               <p>Status: <span class="status"></span></p>
+            <div class="main-game">
+               <h1>
+                  The
+                  <span class="hot" style="border-bottom: 5px solid red"
+                     >Hot</span
+                  >
+                  or
+                  <span class="cold" style="border-bottom: 5px solid cyan"
+                     >Cold</span
+                  >
+                  Game
+               </h1>
+               <p>Guess a number between 0 and 100 to play</p>
+               <div class="result">
+                  <p>Status: <span class="status"></span></p>
+               </div>
+               <p>Trials: <span class="trials"></span></p>
+               <form>
+                  <label for="guess"></label>
+                  <input
+                     type="text"
+                     name="guess"
+                     id="guess"
+                     value=""
+                     placeholder="Input your guess"
+                  />
+                  <div class="error"></div>
+                  <button>Play</button> <span class="restart">New Game</span>
+               </form>
             </div>
-            <p>Trials: <span class="trials"></span></p>
-            <form>
-               <label for="guess"></label>
-               <input
-                  type="text"
-                  name="guess"
-                  id="guess"
-                  value=""
-                  placeholder="Input your guess"
-               />
-               <div class="error"></div>
-               <button>Play</button> <span class="restart">New Game</span>
-            </form>
+            <div class="progress-bar">
+               <div class="bar"></div>
+            </div>
          </div>
       </main>
       <script>
@@ -49,6 +56,7 @@
             const status = document.querySelector(".status");
             const trials = document.querySelector(".trials");
             const restart = document.querySelector(".restart");
+            const bar = document.querySelector(".bar");
             let error = document.querySelector(".error");
             // setting flag variables
             let statusText;
@@ -71,6 +79,7 @@
                   //proceed if the input is valid
                   const guess = form.guess.value.trim();
                   const differece = Math.abs(guess - randValue); //absolute diff b/w user guess $ randValue
+                  bar.style.height = `${Math.abs(differece - 100)}%`; //set progress bar height
                   if (guess == randValue) {
                      statusText = `game won in ${numberOfTrial + 1} trials`;
                      statusColor = "purple";
@@ -88,6 +97,7 @@
                   }
                   status.textContent = statusText; //set status text based on user's play
                   status.style.color = statusColor; //set status text color accordingly
+                  bar.style.background = statusColor; //set progress bar color accordingly
                   result.classList.add("flash"); //flash the results for visuals
                   setInterval(() => {
                      result.classList.remove("flash");
@@ -109,7 +119,9 @@
                error.textContent = ""; //reset validation error test
                numberOfTrial = 0; //reset number of trials
                trials.textContent = numberOfTrial;
-               lastGuessDifference = 0; //and reset number of trials
+               lastGuessDifference = 0; // reset number last guess difference
+               bar.style.background = "";
+               bar.style.height = ""; // and reset progress bar
             });
 
             //function to validate the form
