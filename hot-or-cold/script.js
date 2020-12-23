@@ -36,6 +36,7 @@ function playGame() {
          bar.style.height = `${Math.abs(differece - 100)}%`; //set progress bar height
          if (guess == randValue) {
             statusText = `game won in ${numberOfTrial + 1} trials`;
+            status.style.background = "white";
             statusColor = "purple";
             game.style.background = statusColor;
             game.style.color = "white";
